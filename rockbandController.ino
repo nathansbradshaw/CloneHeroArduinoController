@@ -465,21 +465,24 @@ void lightState(bool isPressed, int lightMode, int key)
 //used to control the strobe of the lights
 void setHueDirection(int &counter, bool &up, int speed)
 {
-  if (up && counter < 214)
+  if (up)
   {
-    counter += speed;
+      if(counter < 234)
+      {
+        counter += speed;
+      } else {
+        up = false;
+      }
+
   }
-  if (up && counter > 214)
+  if (!up)
   {
-    up = false;
-  }
-  if (!up && counter > 1)
-  {
-    counter -= speed;
-  }
-  if (!up && counter < 10)
-  {
-    up = true;
+      if(counter > 10)
+      {
+          counter -= speed;
+      } else {
+          up = true;
+      }
   }
 }
 
